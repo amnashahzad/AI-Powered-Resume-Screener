@@ -1,18 +1,17 @@
 import spacy
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
-import streamlit as st
-import time
 import subprocess
-import os
+import streamlit as st
 
-# Load spaCy's English model (download if not available)
+# Force download the model if not available
 try:
     nlp = spacy.load("en_core_web_sm")
 except OSError:
     st.warning("Downloading spaCy model. This might take a few seconds...")
     subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
     nlp = spacy.load("en_core_web_sm")
+
+st.title("AI-Powered Resume Screener")
+st.write("App is running successfully!")
 
 # Step 2: Preprocess Text
 def preprocess(text):
